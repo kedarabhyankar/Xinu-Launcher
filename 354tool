@@ -2,12 +2,12 @@
 
 echo -e '\033[0;35m####################################################'
 echo -e '\033[0;31m       *****     ****    *****    *****   *   *     '
-echo -e '\033[0;32m      *         *            *    *       *   *     '
-echo -e '\033[0;33m      *         *****     ****    *****   *****     '
-echo -e '\033[0;34m      *             *        *        *       *     '
-echo -e '\033[0;36m       *****    ****     *****    *****       *     '
+echo -e '\033[0;31m      *         *            *    *       *   *     '
+echo -e '\033[0;31m      *         *****     ****    *****   *****     '
+echo -e '\033[0;31m      *             *        *        *       *     '
+echo -e '\033[0;31m       *****    ****     *****    *****       *     '
 echo -e '\033[0;35m####################################################'
-echo
+echo -e '\033[0;37m '
 echo 'A simple 354 menu tool, to make your life easier...ish.'
 echo 'Developed by Kedar Abhyankar, kedar@cs.purdue.edu, https://kedarabhyankar.me'
 echo
@@ -21,17 +21,45 @@ echo '(7) Open Course Webpage'
 read INP
 
 if [ $INP -eq 1 ]; then
+
+	echo "What is your username?"
+	read USERNAME
+	echo "What is your preferred Xinu Backend? Entering nothing will choose a random backend."
+	read XINU_CHOICE
+	if [ -z $XINU_CHOICE ]; then
+		XINU_CHOICE=$((1 + $RANDOM % (1 + 21 - 1)))
+	fi
 	
+	if [ $XINU_CHOICE -gt  21 ]; then
+		echo "XINU_CHOICE GREATER THAN 21"
+		exit 1
+	fi
+
+	if [ $XINU_CHOICE -lt 1 ]; then
+		echo "XINU_CHOICE LESS THAN 1"
+		exit 1
+	fi 
+	
+	if [ $XINU_CHOICE -ge 1 ] && [ $XINU_CHOICE -le 9 ]; then
+		printf -v XINU_CHOICE "%02g" $XINU_CHOICE
+	fi
+
+	SSH_STRING="xinu$XINU_CHOICE.cs.purdue.edu"
+	echo "ssh-ing into $USERNAME@$SSH_STRING"
+	ssh "$USERNAME@$SSH_STRING"
+		
 elif [ $INP -eq 2 ]; then
-	
+	echo 2
 elif [ $INP -eq 3 ]; then
-
+	echo 3
 elif [ $INP -eq 4 ]; then
-
+	echo 4
 elif [ $INP -eq 5 ]; then
-
+	echo 5
 elif [ $INP -eq 6 ]; then
-
+	echo 6
 elif [ $INP -eq 7 ]; then
-	open https://www.cs.purdue.edu/homes/cs354/
+	echo -e '\033[0;32m Opening the Course Webpage!'
+	sleep 1
+	open "https://www.cs.purdue.edu/homes/cs354/"
 fi
