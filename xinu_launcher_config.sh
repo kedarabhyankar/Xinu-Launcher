@@ -3,25 +3,16 @@
 USERNAME=$1
 XINU_CHOICE=$2
 CONFIG=config
+
 if test -f "$CONFIG"; then
-	counter=0
-	while IFS= read -r line
-	do
-	if [$counter -eq 0]; then
-		
-	elif [$counter -eq 1]; then
-	
-	elif [$counter -eq 2]; then
-		
-	fi
-	counter += 1
-	done
-elif
+	USERNAME=$(sed -n 1p $CONFIG | cut -d'=' -f2) #username 
+	XINU_CHOICE=$(sed -n 2p $CONFIG | cut -d'=' -f2) #preferred backend	
+else
 	if [ "$#" -lt 1 ]; then
 		echo "No arguments passed in, and no config file. Exiting."
-		exit 1;
-	elif
-		echo "No config file, defaulting to arguments 			instead."
+		exit 1
+	else
+		echo "No config file, defaulting to arguments instead."
 	fi
 fi
 if [ $XINU_CHOICE -gt  21 ]; then
@@ -39,3 +30,4 @@ fi
 SSH_STRING="xinu$XINU_CHOICE.cs.purdue.edu"
 echo "ssh-ing into $USERNAME@$SSH_STRING"
 ssh "$USERNAME@$SSH_STRING"
+

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+echo -e '\033[0;35m####################################################'
+echo -e '\033[0;31m       *****     ****    *****    *****   *   *     '
+echo -e '\033[0;32m      *         *            *    *       *   *     '
+echo -e '\033[0;33m      *         *****     ****    *****   *****     '
+echo -e '\033[0;34m      *             *        *        *       *     '
+echo -e '\033[0;36m       *****    ****     *****    *****       *     '
+echo -e '\033[0;35m####################################################'
+echo
+echo 'A simple 354 menu tool, to make your life easier...ish.'
+echo 'Developed by Kedar Abhyankar, kedar@cs.purdue.edu, https://kedarabhyankar.me'
+echo
+echo '(1) Connect to a Xinu Backend'
+echo '(2) Open a lecture'
+echo '(3) Get Presentation'
+echo '(4) Email Professor Park'
+echo '(5) Open Piazza'
+echo '(6) Open Brightspace Course'
+echo '(7) Open Course Webpage'
+read INP
+
+if [ $INP -eq 1 ]; then
+	
+elif [ $INP -eq 2 ]; then
+	
+elif [ $INP -eq 3 ]; then
+
+elif [ $INP -eq 4 ]; then
+
+elif [ $INP -eq 5 ]; then
+
+elif [ $INP -eq 6 ]; then
+
+elif [ $INP -eq 7 ]; then
+	open https://www.cs.purdue.edu/homes/cs354/
+fi
