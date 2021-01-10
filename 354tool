@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+## configure script variables here
+	CONFIG=config
+## do not modify below this!
 echo -e '\033[0;35m####################################################'
 echo -e '\033[0;31m       *****     ****    *****    *****   *   *     '
 echo -e '\033[0;31m      *         *            *    *       *   *     '
@@ -21,11 +25,18 @@ echo '(7) Open Course Webpage'
 read INP
 
 if [ $INP -eq 1 ]; then
+	WRITE_FLAG=0
+	if test -f "$CONFIG"; then
+		USERNAME=$(sed -n 1p $CONFIG | cut -d'=' -f2) #get username from config
+  		XINU_CHOICE=$(sed -n 2p $CONFIG | cut -d'=' -f2) #preferred backend
+	else
+		echo "What is your username?"
+		read USERNAME
+		echo "What is your preferred Xinu Backend? Entering nothing will choose a random backend."
+		read XINU_CHOICE
+		WRITE_FLAG=1
+	fi
 
-	echo "What is your username?"
-	read USERNAME
-	echo "What is your preferred Xinu Backend? Entering nothing will choose a random backend."
-	read XINU_CHOICE
 	if [ -z $XINU_CHOICE ]; then
 		XINU_CHOICE=$((1 + $RANDOM % (1 + 21 - 1)))
 	fi
@@ -42,6 +53,10 @@ if [ $INP -eq 1 ]; then
 	
 	if [ $XINU_CHOICE -ge 1 ] && [ $XINU_CHOICE -le 9 ]; then
 		printf -v XINU_CHOICE "%02g" $XINU_CHOICE
+	fi
+
+	if [ $WRITE_FLAG -eq 1 ]; then
+		echo -e "USERNAME=$USERNAME\nPREF_XINU=$XINU_CHOICE\n" >> $CONFIG
 	fi
 
 	SSH_STRING="xinu$XINU_CHOICE.cs.purdue.edu"
