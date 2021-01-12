@@ -1,6 +1,0 @@
-#!/bin/bash
-
-LEC_NUM=$1
-
-#CURL FILE FROM /HOMES/CS354/LEC.txt
-
