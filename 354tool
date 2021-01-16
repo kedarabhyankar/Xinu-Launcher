@@ -18,10 +18,9 @@ echo
 echo -e '\033[0;31m (1) Connect to a Xinu Backend'
 echo -e '\033[0;32m (2) Open a lecture'
 echo -e '\033[0;33m (3) Get Presentation'
-echo -e '\033[0;34m (4) Get Notes'
-echo -e '\033[0;35m (5) Open Piazza'
-echo -e '\033[0;36m (6) Open Brightspace Course'
-echo -e '\033[0;37m (7) Open Course Webpage'
+echo -e '\033[0;34m (4) Open Piazza'
+echo -e '\033[0;35m (5) Open Brightspace Course'
+echo -e '\033[0;36m (6) Open Course Webpage'
 read INP
 
 if [ $INP -eq 1 ]; then
@@ -74,19 +73,17 @@ elif [ $INP -eq 2 ]; then
 		exit 1
 	fi
 elif [ $INP -eq 3 ]; then
-	echo 3
-elif [ $INP -eq 4 ]; then
 	echo "What presentation number do you want?"
 	read PRES_NUM
 	echo "What is your username?"
 	read USERNAME
 	scp $USERNAME@data.cs.purdue.edu:/homes/cs354/www/cs354-$SEMESTER-note-$PRES_NUM.pdf .
 	echo "Downloaded Notes #$PRES_NUM!"
-elif [ $INP -eq 5 ]; then
+elif [ $INP -eq 4 ]; then
 	echo 5
-elif [ $INP -eq 6 ]; then
+elif [ $INP -eq 5 ]; then
 	echo 6
-elif [ $INP -eq 7 ]; then
+elif [ $INP -eq 6 ]; then
 	echo -e '\033[0;32m Opening the Course Webpage!'
 	sleep 1
 	open "https://www.cs.purdue.edu/homes/cs354/"
