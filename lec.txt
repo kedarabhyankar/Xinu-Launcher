@@ -1,0 +1,343 @@
+Video Lecture Links
+-------------------
+
+This file contains links to video lectures stored on Google Drive. Following the
+URL allows streaming or downloading the content. The lectures are organized sequentially
+on a weekly basis. Expect about 3-6 lecture videos per week depending on the size
+individual lecture recordings. Lectures will be released approximately on a MWF schedule.
+
+Be mindful that compressed video, streaming or download, is by its nature voluminous. 
+Streaming quality and download speed is influenced by how busy servers and networks are.
+
+Week 1
+------
+
+Lecture 1:
+https://drive.google.com/file/d/1YKFRaSi2SvqKNGe3YXlMRl290FziM1xe/view?usp=sharing
+Course syllabus and overview.
+
+Lecture 2:
+https://drive.google.com/file/d/1w8I_VaQnI4tWzWCiu3hjtyaYCs4NzleI/view?usp=sharing
+Overview of operating systems and XINU.
+
+Lecture 3:
+https://drive.google.com/file/d/1i2N4b1HW8lhhjh6KF7EHgBj1WarjIewZ/view?usp=sharing
+System calls and user mode/kernel mode toggling.
+Different flavors of process creation.
+Process (i.e., running program), its stack and role.
+
+Lecture 4:
+https://drive.google.com/file/d/1kYF3GIdixp38WILDCe22GxwoqjthZTY4/view?usp=sharing
+Role of XINU Lab frontend and backend machines.
+Overview of hardware: CPU and main memory.
+
+Week 2
+------
+
+Lecture 5:
+https://drive.google.com/file/d/11kmP3lwRMSyZFtWvWWVQ3nQqdvM1FeBx/view?usp=sharing
+Overview of software: C preprocessor, compiler, assembler, CDECL caller/callee convention.
+
+Lecture 6:
+https://drive.google.com/file/d/15Z_fcMaAc88Om_KyUzxqnEG19BFfeTuj/view?usp=sharing
+Hardware support for stack management on Galileo backends.
+Boot loading, start.S, nulluser(), and XINU NULL process.
+
+Lecture 7:
+https://drive.google.com/file/d/1EaWAs2ZopzDecvd9ZLA2cWmMJRx-vz2C/view?usp=sharing
+Wrap-up of software and hardware background review.
+Release of first lab assignment.
+Isolation/protection: motivation.
+
+Week 3
+------
+
+Lecture 8:
+https://drive.google.com/file/d/14-gwiFotB-NmQUPiIUtDyJsm95KNlm0F/view?usp=sharing
+Isolation/protection: motivation (continued), hardware support.
+
+Lecture 9:
+https://drive.google.com/file/d/1BPla5s39jTtRtp1jJkaPK0CboaDYXsPB/view?usp=sharing
+Isolation/protection: hardware support (continued).
+OS organization into upper and lower halves, two pathways for switching from user to 
+kernel mode.
+
+Lecture 10:
+https://drive.google.com/file/d/1KyiyZgBysSUhaR4JTow2hr096Dpl9qSH/view?usp=sharing
+Software support for isolation/protection: per-process kernel stack.
+Absence of isolation/protection in XINU.
+
+Week 4
+------
+
+Lecture 11:
+https://drive.google.com/file/d/1j6VI2NMu7gfcfDwoFACqPjetUiByrv-S/view?usp=sharing
+x86-specific features: privilege levels or rings.
+GDT, and CS, DS, SS registers.
+Software disabling of memory segmentation (base/limit) in XINU, Linux and Windows.
+GDT setup in Linux and Windows.
+
+Lecture 12:
+https://drive.google.com/file/d/1evZLkCi9wKMpaoJB-aV7zuRm4YBoe0Yi/view?usp=sharing
+GDT setup in XINU.
+XINU runs in x86 protected mode with isolation/protection hardware support but does not 
+utilize user mode: code, data, stack entries in GDT are configured with DPL value 00.
+Function of IF and IOPL fields in EFLAGS register.
+Role of IDT, reservation of interrupts numbers 0, ..., 31 for exceptions/faults.
+Notion of synchronous vs. asynchronous interrupts.
+
+Lecture 13:
+https://drive.google.com/file/d/15Ith57OlsKl9NVQmU52ydkbbFmPBekvN/view?usp=sharing
+Role of synchronous interrupts with interrupt number 0, 13, 14 in x86.
+Difference between exceptions (or faults) and software interrupts.
+General configuration of IDT in XINU, mapping of clock interrupt (i.e., system timer).
+
+Week 5
+------
+
+Lecture 14:
+https://drive.google.com/file/d/1f5aeYWjQW7YzLFghvFK_h2IT3YSW-8ka/view?usp=sharing
+Optional lecture on x86 and XINU interrupt/trap handling to help with lab2.
+
+Lecture 15:
+https://drive.google.com/file/d/1eexmphDAQW8YkgX5H0yioHG0Rd0_bpey/view?usp=sharing
+Code is executed in the context of some process, role of null/idle process.
+Process models.
+XINU process table and states.
+
+Lecture 16:
+https://drive.google.com/file/d/1lcXqQN5l5XnCRWTS9iJfYELjG-e2XFF7/view?usp=sharing
+Role and position of scheduler in operating systems.
+Two pathways for invoking the scheduler.
+XINU sleepms() blocking system call and clock interrupt to wake up sleeping processes.
+
+Lecture 17:
+https://drive.google.com/file/d/1o-hhlZEH0Ae6PjIYudI3Ry0XH7ZaW-hC/view?usp=sharing
+Role of time slice (or quantum) in scheduling.
+Management of time slice consumption by clock interrupt handler.
+Ready list priority queue in XINU.
+XINU's scheduler resched() implementation.
+
+Week 6
+------
+
+Lecture 18:
+https://drive.google.com/file/d/1uyhcNAn44b0xac0q4B17UJzhNNI69rPi/view?usp=sharing
+Context-switching implementation by XINU's ctxsw() function.
+Memory layout of the run-time stacks of old and new processes.
+Saving the context of the old process. 
+
+Lecture 19:
+https://drive.google.com/file/d/1zWqIWPIjPzmQHYKuxGAHgG5fr452VTXk/view?usp=sharing
+Switching stacks, restoring the context of new process that was previously
+context-switched out.
+Corner case of context-switching in and executing a newly created process.
+Manipulating process stack during creation to make it seem that newly created process
+has a past (i.e., ran before and was context-switched out).
+Inducing ctxsw() to jump to code of newly created process upon return.
+
+Lecture 20:
+https://drive.google.com/file/d/1l76-9_Ka8gIS5HF2S-7YNfdN9qO1rejj/view?usp=sharing
+Scheduling overhead: dequeue vs. enqueue of ready processes.
+Overhead of XINU's readylist.
+Scheduling objectives and algorithms in operating systems. 
+Equal share fairness, round-robin scheduling, CPU- vs. I/O-bound processes.
+Enhancing responsiveness of I/O-bound processes.
+
+Week 7
+------
+
+Lecture 21:
+https://drive.google.com/file/d/1PhX-3bbNEuF_SJ3ZkOM9xiz84uTcQCDI/view?usp=sharing
+Scheduling control variables: priority and time slice.
+Qualitative assignment of priority and time slice to CPU- vs. I/O-bound processes.
+UNIX Solaris TS scheduling.
+Identification of CPU- vs. I/O-bound processes.
+
+Lecture 22:
+https://drive.google.com/file/d/1T-27WnSPmSTQVQR5DZun1lMLrKV19hfb/view?usp=sharing
+Constant overhead scheduling using array of FIFI queues indexed by priority.
+Fair scheduling and Linux CFS: real-world workload issues, logarithmic overhead.
+Structure of XINU system calls and interrupt disabling/restoring.
+
+Lecture 23:
+https://drive.google.com/file/d/1X0RvIWX7rjTl9BRLvxT9KODywAFR3Qy5/view?usp=sharing
+Inter-process communication (IPC) using message passing.
+Synchronous blocking/nonblocking IPC.
+Tasks of upper half to block and unblock processes.
+System call implementation in XINU.
+
+Week 8
+------
+
+Lecture 24:
+https://drive.google.com/file/d/15nfin-9DoZ5x5e3bL0Akmdg2AAhj0ZHe/view?usp=sharing
+Asynchronous IPC with callback function: motivation, design and implementation
+to preserve isolation/protection.
+Process synchronization: orderly access to shared data structures, two main
+applications.
+
+Lecture 25:
+https://drive.google.com/file/d/1Q33ngMuA5pBaxif8sBGxOkTpb-zdG7I9/view?usp=sharing
+Racing condition, critical section, mutual exclusion.
+Voluntary vs. mandatory primitives, prologue/epilogue code to guard critical section.
+Hardware support for mutual exclusion: interrupt disabling, test-and-set, their
+pros/cons.
+
+Lecture 26:
+https://drive.google.com/file/d/1raSEDdyWkRr9Zh8mAOqlGP2tHzuCNSFD/view?usp=sharing
+Exporting process synchronization primitives as system calls vs. utilizing them
+for kernel coding.
+Software support for mutual exclusion: counting semaphore. 
+Blocking during semaphore acquire attempt, semaphore queue, unblocking at semaphore
+release in kernel upper half.
+
+Week 9
+------
+
+Lecture 27:
+https://drive.google.com/file/d/1LQoE3aA7CvEXEdTHJ4o24vJWxbiDMCU0/view?usp=sharing
+Implementation of semaphore system calls in XINU.
+Dependence of wait() and signal() on interrupt disabling hardware support and its
+justification.
+Producer/consumer synchronization using two counting semaphores.
+Advantage over using mutual exclusion to protect producer/consumer buffer.
+
+Lecture 28:
+https://drive.google.com/file/d/1jrBPAxbLBrHAumw60XoeX9CcCQukjzCv/view?usp=sharing
+Deadlock: cause and detection overhead.
+Rationale for dealing with deadlocks by operating systems.
+Prevention of deadlocks.
+Memory management: basic and advanced.
+
+Lecture 29:
+https://drive.google.com/file/d/1aafF5vuMaG0s8C9V4cGOEibQwG5iO8Ev/view?usp=sharing
+Dynamic memory allocation and deallocation using memory freelist.
+Space optimization of freelist kernel data structure in XINU.
+
+Week 10
+-------
+
+Lecture 30:
+https://drive.google.com/file/d/1ORWKW46carO-f4CantJsuyGjzKzm-s0A/view?usp=sharing
+Operation of getmem() and freemem().
+Internal and external fragmentation.
+Use of indirection to handle external fragmentation.
+
+Lecture 31:
+https://drive.google.com/file/d/1jKwwQliUU9ao_ff_CP1dUQNGUj7muo-p/view?usp=sharing
+Virtualization of memory using per-process address translation table.
+Benefits of virtual memory using hardware support.
+Overhead associated with memory virtualization.
+
+Lecture 32:
+https://drive.google.com/file/d/1dYwQsAw9M-9RGU_RNEiqzx3Jcm2oIkKn/view?usp=sharing
+Paging: page number, offset, address translation.
+Address translation example using 32-bit architecture with 4 KB page size.
+Per-process page table in main memory, page table base register (PTBR).
+Memory hierarchy in computing systems and caching.
+Locality of reference leads to significant performance benefit.
+Boundary of virtual vs. physical addresses in memory hierarchy.
+
+Week 10
+-------
+
+Lecture 33:
+https://drive.google.com/file/d/1AtCO6asqt2ntyHnsH-cGgu_wiR-biWys/view?usp=sharing
+Fast address translation using TLB.
+Demand paging and role of swap space on disk.
+TLB miss, page fault, and boundary of kernel responsibility.
+Blocking and unblocking of page faulting process.
+
+Lecture 34:
+https://drive.google.com/file/d/1bbM4q5BnbfC4WI1wtzhR1F2sfqDjX9yQ/view?usp=sharing
+Demand paging and context-switch overhead stemming from cache flushing in
+memory hierarchy.
+Influence of technology on virtual memory management.
+
+Week 11
+-------
+
+Lecture 35:
+https://drive.google.com/file/d/1N1uaMDyskkarR5Um_gaUhW6lk8Q94k8Y/view?usp=sharing
+Hardware and software coordination for page fault and replacement.
+Page replacement policies: LRU and optimal, role of locality of reference.
+
+Lecture 36:
+https://drive.google.com/file/d/13eSNK2pkmMzapMs0BZC4q_PBZdoejgt7/view?usp=sharing
+Global clock page replacement.
+Pageout daemon: implementing kernel functionality as a kernel process.
+Memory thrashing and its symptoms.
+Memory needs of real-world workload: mice and elephants.
+
+Lecture 37:
+https://drive.google.com/file/d/1PI8s560Q3L9CRF50PtApb--LT-hXZckD/view?usp=sharing
+Mice and elephants facilitates reducing page table size.
+Multi-level page tables: 2-level page table example for x86-32.
+Challenges facing device management in modern computing systems with myriad and
+high-speed devices.
+
+Week 12
+-------
+
+Lecture 38:
+https://drive.google.com/file/d/1sEA7QIyawh_v50hhJxRqgFFc3s6wU9zV/view?usp=sharing
+Organization of interrupt processing.
+Lower half mutual exclusion through interrupt disabling.
+Context-borrowing, blocking/unblocking and scheduling.
+
+Lecture 39:
+https://drive.google.com/file/d/1pxkhjYAtBff4nOf8DomcSY5qI-8Bc0mD/view?usp=sharing
+Device driver: lower half/upper half interaction during device I/O.
+Equivalence of coordination mechanism underlying device I/O and IPC.
+
+Lecture 40:
+https://drive.google.com/file/d/1XiEwl-uinmGiGfoOG9vOaTcuWSpIjtnK/view?usp=sharing
+Motivation for subdivision of lower half into top half and bottom half.
+Different roles of top and bottom halves.
+Two options for implementing bottom halves.
+Need for DMA in modern computing systems: real-time video streaming example.
+Role of top half under DMA hardware support.
+
+Week 13
+-------
+
+Lecture 41:
+https://drive.google.com/file/d/1u_0N3rLFJ8bD4uy0h4dvyAec92DmPbD6/view?usp=sharing
+Clock types and their function.
+Absolute vs. relative (delta list) time event queues.
+Tickful and tickless kernels, their pros/cons.
+
+Week 14
+-------
+
+Note: Lectures in week 14 on file systems is not included in the scope of the 
+final exam. File system lectures are recordings from spring 2020. Hence lecture 
+42 is referred to as 21 in the recording. Lecture 43 is referred to as 22, etc. 
+Please ignore any comments pertaining to spring 2020 which are not relevant 
+for fall 2020.
+
+Lecture 42:
+https://drive.google.com/file/d/1qvKr3UrPEmWSJ_Z_7M61hR--bLRXAmSn/view?usp=sharing
+Challenges addressed in traditional file systems.
+File access overhead: linear copy cost, logarithmic indexing overhead.
+Role of elephants and mice in real-world file systems on design and performance.
+Logical organization of disk file systems.
+
+Lecture 43:
+https://drive.google.com/file/d/18Vjj-LMaIsrYfpW8U_Xc6mtJWkMoROyv/view?usp=sharing
+Structure of XINU file system.
+Locality of reference and file caching.
+UNIX (i.e., traditional) file system and sharing.
+
+Lecture 44:
+https://www.cs.purdue.edu/homes/park/lec44.mp4
+Organization of UNIX file system.
+Indexing in UNIX file systems: constant overhead for small file, logarithmic
+overhead for large files.
+Memory mapped files.
+
+Lecture 45:
+https://drive.google.com/file/d/1eKwOU4QMSA4JN3hLykdyufhHYbucO-cg/view?usp=sharing
+Log-structured file systems: motivation, design, pros/cons.
+Connection to flash memory storage or solid state drives (SSDs).

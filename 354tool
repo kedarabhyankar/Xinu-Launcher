@@ -2,6 +2,7 @@
 ## configure script variables here
 	CONFIG=config
 	SEMESTER=21s
+	LECTURE_FILE=lec.txt
 ## do not modify below this!
 echo -e '\033[0;35m####################################################'
 echo -e '\033[0;31m       *****     ****    *****    *****   *   *     '
@@ -63,16 +64,24 @@ if [ $INP -eq 1 ]; then
 	ssh "$USERNAME@$SSH_STRING"
 		
 elif [ $INP -eq 2 ]; then
-	echo 2
+	if test -f $LECTURE_FILE; then
+		echo "What lecture do you want?"
+		read LEC_NUM
+		LEC_URL=$(cat $LECTURE_FILE | grep -A 1 "Lecture $LEC_NUM:" | grep -v "Lecture $LEC_NUM")
+		echo $LEC_URL
+	else
+		echo "Missing the lecture file, called $LECTURE_FILE. Make sure that file is in this directory!"
+		exit 1
+	fi
 elif [ $INP -eq 3 ]; then
 	echo 3
 elif [ $INP -eq 4 ]; then
-	echo "What lecture number do you want?"
-	read LEC_NUM
+	echo "What presentation number do you want?"
+	read PRES_NUM
 	echo "What is your username?"
 	read USERNAME
-	scp $USERNAME@data.cs.purdue.edu:/homes/cs354/www/cs354-$SEMESTER-note-$LEC_NUM.pdf .
-	echo "Downloaded Notes #$LEC_NUM!"
+	scp $USERNAME@data.cs.purdue.edu:/homes/cs354/www/cs354-$SEMESTER-note-$PRES_NUM.pdf .
+	echo "Downloaded Notes #$PRES_NUM!"
 elif [ $INP -eq 5 ]; then
 	echo 5
 elif [ $INP -eq 6 ]; then
