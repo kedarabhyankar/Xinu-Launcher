@@ -3,88 +3,107 @@
 	CONFIG=config
 	SEMESTER=21s
 	LECTURE_FILE=lec.txt
+	PREF_SERVER=xinu
 ## do not modify below this!
-echo -e '\033[0;35m####################################################'
-echo -e '\033[0;31m       *****     ****    *****    *****   *   *     '
-echo -e '\033[0;31m      *         *            *    *       *   *     '
-echo -e '\033[0;31m      *         *****     ****    *****   *****     '
-echo -e '\033[0;31m      *             *        *        *       *     '
-echo -e '\033[0;31m       *****    ****     *****    *****       *     '
-echo -e '\033[0;35m####################################################'
-echo -e '\033[0;37m '
-echo 'A simple 354 menu tool, to make your life easier...ish.'
-echo 'Developed by Kedar Abhyankar, kedar@cs.purdue.edu, https://kedarabhyankar.me'
-echo
-echo -e '\033[0;31m (1) Connect to a Xinu Backend'
-echo -e '\033[0;32m (2) Open a lecture'
-echo -e '\033[0;33m (3) Get Presentation'
-echo -e '\033[0;34m (4) Open Piazza'
-echo -e '\033[0;35m (5) Open Brightspace Course'
-echo -e '\033[0;36m (6) Open Course Webpage'
-read INP
+while true
+do
+	echo -e '\033[0;35m####################################################'
+	echo -e '\033[0;31m       *****     ****    *****    *****   *   *     '
+	echo -e '\033[0;31m      *         *            *    *       *   *     '
+	echo -e '\033[0;31m      *         *****     ****    *****   *****     '
+	echo -e '\033[0;31m      *             *        *        *       *     '
+	echo -e '\033[0;31m       *****    ****     *****    *****       *     '
+	echo -e '\033[0;35m####################################################'
+	echo -e '\033[0;37m '
+	echo 'A simple 354 menu tool, to make your life easier...ish.'
+	echo 'Developed by Kedar Abhyankar, kedar@cs.purdue.edu, https://kedarabhyankar.me'
+	echo
+	echo -e '\033[0;31m (1) Connect to a Xinu Backend'
+	echo -e '\033[0;32m (2) Open a lecture'
+	echo -e '\033[0;33m (3) Get Presentation'
+	echo -e '\033[0;34m (4) Open Piazza'
+	echo -e '\033[0;35m (5) Open Brightspace Course'
+	echo -e '\033[0;36m (6) Open Course Webpage'
+	echo -e '\033[0;37m (7) Exit'
+	read INP
 
-if [ $INP -eq 1 ]; then
-	WRITE_FLAG=0
-	if test -f "$CONFIG"; then
-		USERNAME=$(sed -n 1p $CONFIG | cut -d'=' -f2) #get username from config
-  		XINU_CHOICE=$(sed -n 2p $CONFIG | cut -d'=' -f2) #preferred backend
-	else
+	if [ $INP -eq 1 ]; then
+		WRITE_FLAG=0
+		if test -f "$CONFIG"; then
+			USERNAME=$(sed -n 1p $CONFIG | cut -d'=' -f2) #get username from config
+  			XINU_CHOICE=$(sed -n 2p $CONFIG | cut -d'=' -f2) #preferred backend
+		else
+			echo "What is your username?"
+			read USERNAME
+			echo "What is your preferred Xinu Backend? Entering nothing will choose a random backend."
+			read XINU_CHOICE
+			WRITE_FLAG=1
+		fi
+
+		if [ -z $XINU_CHOICE ]; then
+			XINU_CHOICE=$((1 + $RANDOM % (1 + 21 - 1)))
+		fi
+	
+		if [ $XINU_CHOICE -gt  21 ]; then
+			echo "XINU_CHOICE GREATER THAN 21"
+			exit 1
+		fi
+
+		if [ $XINU_CHOICE -lt 1 ]; then
+			echo "XINU_CHOICE LESS THAN 1"
+			exit 1
+		fi 
+	
+		if [ $XINU_CHOICE -ge 1 ] && [ $XINU_CHOICE -le 9 ]; then
+			printf -v XINU_CHOICE "%02g" $XINU_CHOICE
+		fi
+
+		if [ $WRITE_FLAG -eq 1 ]; then
+			echo -e "USERNAME=$USERNAME\nPREF_XINU=$XINU_CHOICE\n" >> $CONFIG
+		fi
+
+		SSH_STRING="xinu$XINU_CHOICE.cs.purdue.edu"
+		echo "ssh-ing into $USERNAME@$SSH_STRING"
+		ssh "$USERNAME@$SSH_STRING"
+		
+	elif [ $INP -eq 2 ]; then
+		if test -f $LECTURE_FILE; then
+			echo "What lecture do you want?"
+			read LEC_NUM
+			LEC_URL=$(cat $LECTURE_FILE | grep -A 1 "Lecture $LEC_NUM:" | grep -v "Lecture $LEC_NUM")
+			echo $LEC_URL
+		else
+			echo "Missing the lecture file, called $LECTURE_FILE. Do you want to download it? [y/n]"
+			read CHOICE
+			if [ "$CHOICE" == "y" ]; then
+				echo "What is your username?"
+				read USERNAME
+				scp $USERNAME@data.cs.purdue.edu:/homes/cs354/www/lec.txt .
+				echo "The file, lec.txt has been downloaded."
+			else
+				echo "Exiting now - in order to use the lecture downloader, please have a lec.txt file in this directory."
+			fi
+		fi
+	elif [ $INP -eq 3 ]; then
+		echo "What presentation number do you want?"
+		read PRES_NUM
 		echo "What is your username?"
 		read USERNAME
-		echo "What is your preferred Xinu Backend? Entering nothing will choose a random backend."
-		read XINU_CHOICE
-		WRITE_FLAG=1
-	fi
-
-	if [ -z $XINU_CHOICE ]; then
-		XINU_CHOICE=$((1 + $RANDOM % (1 + 21 - 1)))
-	fi
-	
-	if [ $XINU_CHOICE -gt  21 ]; then
-		echo "XINU_CHOICE GREATER THAN 21"
+		scp $USERNAME@data.cs.purdue.edu:/homes/cs354/www/cs354-$SEMESTER-note-$PRES_NUM.pdf .
+		echo "Downloaded Notes #$PRES_NUM!"
+	elif [ $INP -eq 4 ]; then
+		echo 5
+	elif [ $INP -eq 5 ]; then
+		echo 6
+	elif [ $INP -eq 6 ]; then
+		echo -e '\033[0;32m Opening the Course Webpage!'
+		sleep 1
+		open "https://www.cs.purdue.edu/homes/cs354/"
+	elif [ $INP -eq 7 ]; then
+		echo 'Exiting script!'
 		exit 1
-	fi
-
-	if [ $XINU_CHOICE -lt 1 ]; then
-		echo "XINU_CHOICE LESS THAN 1"
-		exit 1
-	fi 
-	
-	if [ $XINU_CHOICE -ge 1 ] && [ $XINU_CHOICE -le 9 ]; then
-		printf -v XINU_CHOICE "%02g" $XINU_CHOICE
-	fi
-
-	if [ $WRITE_FLAG -eq 1 ]; then
-		echo -e "USERNAME=$USERNAME\nPREF_XINU=$XINU_CHOICE\n" >> $CONFIG
-	fi
-
-	SSH_STRING="xinu$XINU_CHOICE.cs.purdue.edu"
-	echo "ssh-ing into $USERNAME@$SSH_STRING"
-	ssh "$USERNAME@$SSH_STRING"
-		
-elif [ $INP -eq 2 ]; then
-	if test -f $LECTURE_FILE; then
-		echo "What lecture do you want?"
-		read LEC_NUM
-		LEC_URL=$(cat $LECTURE_FILE | grep -A 1 "Lecture $LEC_NUM:" | grep -v "Lecture $LEC_NUM")
-		echo $LEC_URL
 	else
-		echo "Missing the lecture file, called $LECTURE_FILE. Make sure that file is in this directory!"
-		exit 1
+		echo 'Invalid choice'
 	fi
-elif [ $INP -eq 3 ]; then
-	echo "What presentation number do you want?"
-	read PRES_NUM
-	echo "What is your username?"
-	read USERNAME
-	scp $USERNAME@data.cs.purdue.edu:/homes/cs354/www/cs354-$SEMESTER-note-$PRES_NUM.pdf .
-	echo "Downloaded Notes #$PRES_NUM!"
-elif [ $INP -eq 4 ]; then
-	echo 5
-elif [ $INP -eq 5 ]; then
-	echo 6
-elif [ $INP -eq 6 ]; then
-	echo -e '\033[0;32m Opening the Course Webpage!'
-	sleep 1
-	open "https://www.cs.purdue.edu/homes/cs354/"
-fi
+done
+	
