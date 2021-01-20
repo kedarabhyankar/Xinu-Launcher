@@ -1,0 +1,34 @@
+Video Lecture Links
+-------------------
+
+This file contains links to video lectures stored on Google Drive and a 
+synopsis of each lecture. Following the URL allows streaming or downloading 
+the content. The lectures are organized sequentially on a weekly basis. 
+Lectures will be released on a MWF schedule. Expect 3 lecture videos per 
+week, occasionally 4 when optional lectures providing additional clarification 
+material (mostly on lab assignments) are added. 
+
+Most of the CS354 lectures will be recordings from fall 2020. Some will 
+pertain specifically to spring 2021. If a lecture makes references to fall 
+2020, please ignore it.
+
+Be mindful that compressed video, streaming or download, is by its nature 
+voluminous. Streaming quality and download speed is influenced by how busy 
+servers and networks are.
+
+Some lectures will be longer than 50 minutes. I am speaking more slowly than 
+normal and injecting redundancy in anticipation of questions to enhance 
+clarity and understanding. Setting playback speed to 1.25 or 1.5 will help 
+students who desire faster pace. Skipping forward will also reduce playback 
+time bypassing redundancy and elaboration if not needed.
+
+Week 1
+------
+
+Greeting:
+https://drive.google.com/file/d/1Fgb4q9AGVSjATl_x_nSjDR9vX5c7QsNt/view?usp=sharing
+Hello.
+
+Lecture 1:
+https://drive.google.com/file/d/1gpVqJR6sH_I9ibK59XxLC93MqkqHePxY/view?usp=sharing
+Course syllabus and overview.

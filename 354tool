@@ -65,23 +65,15 @@ do
 		ssh "$USERNAME@$SSH_STRING"
 		
 	elif [ $INP -eq 2 ]; then
-		if test -f $LECTURE_FILE; then
-			echo "What lecture do you want?"
-			read LEC_NUM
-			LEC_URL=$(cat $LECTURE_FILE | grep -A 1 "Lecture $LEC_NUM:" | grep -v "Lecture $LEC_NUM")
-			echo $LEC_URL
-		else
-			echo "Missing the lecture file, called $LECTURE_FILE. Do you want to download it? [y/n]"
-			read CHOICE
-			if [ "$CHOICE" == "y" ]; then
-				echo "What is your username?"
-				read USERNAME
-				scp $USERNAME@data.cs.purdue.edu:/homes/cs354/lec.txt .
-				echo "The file, lec.txt has been downloaded."
-			else
-				echo "Exiting now - in order to use the lecture downloader, please have a lec.txt file in this directory."
-			fi
-		fi
+		echo "Redownloading the lecture file in case any new links have been posted."
+		echo "What is your username?"
+		read USERNAME
+		scp $USERNAME@data.cs.purdue.edu:/homes/cs354/lec.txt .
+		echo "Downloaded the file!"
+		echo "What lecture do you want to open?"
+		read LEC_NUM
+		LEC_URL=$(cat $LECTURE_FILE | grep -A 1 "Lecture $LEC_NUM:" | grep -v "Lecture $LEC_NUM")
+		echo $LEC_URL
 	elif [ $INP -eq 3 ]; then
 		echo "What presentation number do you want?"
 		read PRES_NUM
