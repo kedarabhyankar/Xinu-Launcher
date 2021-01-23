@@ -32,3 +32,7 @@ Hello.
 Lecture 1:
 https://drive.google.com/file/d/1gpVqJR6sH_I9ibK59XxLC93MqkqHePxY/view?usp=sharing
 Course syllabus and overview.
+
+Lecture 2:
+https://drive.google.com/file/d/1w8I_VaQnI4tWzWCiu3hjtyaYCs4NzleI/view?usp=sharing
+Overview of operating systems and XINU.
