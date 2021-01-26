@@ -36,3 +36,12 @@ Course syllabus and overview.
 Lecture 2:
 https://drive.google.com/file/d/1w8I_VaQnI4tWzWCiu3hjtyaYCs4NzleI/view?usp=sharing
 Overview of operating systems and XINU.
+
+Week 2
+------
+
+Lecture 3:
+https://drive.google.com/file/d/1EWbov3wOkbfxMvMIamquLoLUPpfIgKL8/view?usp=sharing
+System calls and user mode/kernel mode toggling.
+Different flavors of process creation.
+Process (i.e., running program), its stack and role.

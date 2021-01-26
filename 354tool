@@ -82,7 +82,11 @@ do
 		echo "What lecture do you want to open?"
 		read LEC_NUM
 		LEC_URL=$(cat $LECTURE_FILE | grep -A 1 "Lecture $LEC_NUM:" | grep -v "Lecture $LEC_NUM")
-		echo $LEC_URL
+		if [ -z $LEC_URL ]; then
+			echo "The requested lecture could not be found."
+		else
+			echo $LEC_URL
+		fi
 	elif [ $INP -eq 3 ]; then
 		echo "What presentation number do you want?"
 		read PRES_NUM
