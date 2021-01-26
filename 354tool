@@ -4,14 +4,6 @@
 	LECTURE_FILE=lec.txt
 ## do not modify below this!
 
-##check dependencies
-	EXPECTED_PYTHON_RES='Python 3*****'
-	if [ $(echo $(python3 -V) | grep -o $EXPECTED_PYTHON_RES | wc -l) -ge 1 ]; then
-		echo 'All dependencies met!'
-	else
-		echo 'Python is not installed and is needed as a dependency for this script.'
-		exit 1
-	fi
 	
 while true
 do
