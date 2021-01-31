@@ -102,7 +102,7 @@ do
 		read FILE_PATH
 		echo "What is your username?"
 		read USERNAME
-		scp ../xinu-spring2021/$FILE_PATH $USERNAME@data.cs.purdue.edu:/xinu-spring2021/$FILE_PATH	
+		scp ../xinu-spring2021/$FILE_PATH $USERNAME@data.cs.purdue.edu:xinu-spring2021/$FILE_PATH	
 		echo 'Transferred!' 
 	elif [ $INP -eq 6 ]; then
 		echo 'Exiting script!'
