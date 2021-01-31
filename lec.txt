@@ -45,3 +45,8 @@ https://drive.google.com/file/d/1EWbov3wOkbfxMvMIamquLoLUPpfIgKL8/view?usp=shari
 System calls and user mode/kernel mode toggling.
 Different flavors of process creation.
 Process (i.e., running program), its stack and role.
+
+Lecture 4:
+https://drive.google.com/file/d/1kYF3GIdixp38WILDCe22GxwoqjthZTY4/view?usp=sharing
+Role of XINU Lab frontend and backend machines.
+Overview of hardware: CPU and main memory.
