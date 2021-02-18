@@ -50,3 +50,74 @@ Lecture 4:
 https://drive.google.com/file/d/1kYF3GIdixp38WILDCe22GxwoqjthZTY4/view?usp=sharing
 Role of XINU Lab frontend and backend machines.
 Overview of hardware: CPU and main memory.
+
+Lecture 5:
+https://drive.google.com/file/d/11kmP3lwRMSyZFtWvWWVQ3nQqdvM1FeBx/view?usp=sharing
+Overview of software: C preprocessor, compiler, assembler, CDECL caller/callee convention.
+
+Week 3
+------
+
+Lecture 6:
+https://drive.google.com/file/d/15Z_fcMaAc88Om_KyUzxqnEG19BFfeTuj/view?usp=sharing
+Hardware support for stack management on Galileo backends.
+Boot loading, start.S, nulluser(), and XINU NULL process.
+
+Lecture 7:
+https://drive.google.com/file/d/1EaWAs2ZopzDecvd9ZLA2cWmMJRx-vz2C/view?usp=sharing
+Wrap-up of software and hardware background review.
+Isolation/protection: motivation.
+
+Lecture 8:
+https://drive.google.com/file/d/14-gwiFotB-NmQUPiIUtDyJsm95KNlm0F/view?usp=sharing
+Isolation/protection: motivation (continued), hardware support.
+
+Week 4
+------
+
+Lecture 9:
+https://drive.google.com/file/d/1BPla5s39jTtRtp1jJkaPK0CboaDYXsPB/view?usp=sharing
+Isolation/protection: hardware support (continued).
+OS organization into upper and lower halves, two pathways for switching from user to
+kernel mode.
+
+Lecture 10:
+https://drive.google.com/file/d/1jmvkxR-ENXIVp4Z9WEGlNsdhmhC1DrHH/view?usp=sharing
+Software support for isolation/protection: per-process kernel stack.
+Absence of isolation/protection in XINU.
+
+Lecture 11:
+https://drive.google.com/file/d/1j6VI2NMu7gfcfDwoFACqPjetUiByrv-S/view?usp=sharing
+x86-specific features: privilege levels or rings.
+GDT, and CS, DS, SS registers.
+Software disabling of memory segmentation (base/limit) in XINU, Linux and Windows.
+GDT setup in Linux and Windows.
+
+Note: Lectures 11, 12, 13 will provide an overview of x86 hardware support, some
+of which specifically relevant for isolation/protection. Lecture 14 will be an optional 
+lecture that provides tutorial background on lab2 for those that may benefit from it.
+It is important that you develop the skills to analyze problems and figure things out
+on your own which can be gained through practice only. You should not need lecture 14 
+but it will there in case you do.
+
+Week 5
+------
+
+Lecture 12:
+https://drive.google.com/file/d/1evZLkCi9wKMpaoJB-aV7zuRm4YBoe0Yi/view?usp=sharing
+GDT setup in XINU.
+XINU runs in x86 protected mode with isolation/protection hardware support but does not
+utilize user mode: code, data, stack entries in GDT are configured with DPL value 00.
+Function of IF and IOPL fields in EFLAGS register.
+Role of IDT, reservation of interrupts numbers 0, ..., 31 for exceptions/faults.
+Notion of synchronous vs. asynchronous interrupts.
+
+Lecture 13:
+https://drive.google.com/file/d/15Ith57OlsKl9NVQmU52ydkbbFmPBekvN/view?usp=sharing
+Role of synchronous interrupts with interrupt number 0, 13, 14 in x86.
+Difference between exceptions (or faults) and software interrupts.
+General configuration of IDT in XINU, mapping of clock interrupt (i.e., system timer).
+
+[Toward the end, I note that we modify chprio() in lab2 so that it becomes a trapped
+system call. As you will know from lab2, we are modifying resume() and yield() into 
+trapped system calls.]

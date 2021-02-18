@@ -19,11 +19,12 @@ do
 	echo 'Developed by Kedar Abhyankar, kedar@cs.purdue.edu, https://kedarabhyankar.me'
 	echo
 	echo -e '\033[0;31m (1) Connect to a Xinu Backend'
-	echo -e '\033[0;32m (2) Open a lecture'
-	echo -e '\033[0;33m (3) Get Presentation'
-	echo -e '\033[0;34m (4) Open Course Webpage'
-	echo -e '\033[0;35m (5) Transfer specfic file to xinu source'
-	echo -e '\033[0;36m (6) Exit'
+	echo -e '\033[0;32m (2) List lectures'
+	echo -e '\033[0;33m (3) Open a lecture'
+	echo -e '\033[0;34m (4) Get Presentation'
+	echo -e '\033[0;35m (5) Open Course Webpage'
+	echo -e '\033[0;36m (6) Transfer specfic file to xinu source'
+	echo -e '\033[0;37m (7) Exit'
 	read INP
 
 	if [ $INP -eq 1 ]; then
@@ -65,8 +66,15 @@ do
 		echo "ssh-ing into $USERNAME@$SSH_STRING"
 		sleep 1
 		ssh "$USERNAME@$SSH_STRING"
-		
 	elif [ $INP -eq 2 ]; then
+
+		echo "Redownloading ther lecture file in case any new links have been posted."
+		echo "What is your username?"
+		read USERNAME
+		scp $USERNAME@data.cs.purdue.edu:/homes/cs354/lec.txt .
+		echo "Downloaded the file!"
+		cat lec.txt | grep -v "https://"		
+	elif [ $INP -eq 3 ]; then
 		echo "Redownloading the lecture file in case any new links have been posted."
 		echo "What is your username?"
 		read USERNAME
@@ -80,18 +88,18 @@ do
 		else
 			echo $LEC_URL
 		fi
-	elif [ $INP -eq 3 ]; then
+	elif [ $INP -eq 4 ]; then
 		echo "What presentation number do you want?"
 		read PRES_NUM
 		echo "What is your username?"
 		read USERNAME
 		scp $USERNAME@data.cs.purdue.edu:/homes/cs354/Presentation-$PRES_NUM.pdf .
 		echo "Downloaded Notes #$PRES_NUM!"
-	elif [ $INP -eq 4 ]; then
+	elif [ $INP -eq 5 ]; then
 		echo -e '\033[0;32m Opening the Course Webpage!'
 		sleep 1
 		open "https://www.cs.purdue.edu/homes/cs354/"
-	elif [ $INP -eq 5 ]; then
+	elif [ $INP -eq 6 ]; then
 		echo -e 'What is the path of the file you want to transfer?\nIt should be in respect to this directory.\nFor this script to work correctly, the directory structure must be:\n
 		--Xinu Launcher\n
 		----354tool\n
@@ -104,7 +112,7 @@ do
 		read USERNAME
 		scp ../xinu-spring2021/$FILE_PATH $USERNAME@data.cs.purdue.edu:xinu-spring2021/$FILE_PATH	
 		echo 'Transferred!' 
-	elif [ $INP -eq 6 ]; then
+	elif [ $INP -eq 7 ]; then
 		echo 'Exiting script!'
 		exit 1
 	else
