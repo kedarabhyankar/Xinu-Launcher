@@ -121,3 +121,15 @@ General configuration of IDT in XINU, mapping of clock interrupt (i.e., system t
 [Toward the end, I note that we modify chprio() in lab2 so that it becomes a trapped
 system call. As you will know from lab2, we are modifying resume() and yield() into 
 trapped system calls.]
+
+Lecture 14:
+https://drive.google.com/file/d/12kUHqxJqUCmBFstOeSPg8HUq_fFpVu6t/view?usp=sharing
+Overview of Problems 3 and 5 of lab2.
+
+[Lecture 14 is an optional lecture that provides an overview of lab2. The lecture
+contains redundant information and is not needed to solve lab2. It is provided for
+students to utilize as an addendum to PSOs and office hours. Only utilize it if 
+you find a need. Trapped system calls implemented in Problem 5 are important for 
+understanding how isolation/protection is realized in operating systems such as 
+Linux and Windows. The programming techniques covered in lab2 serve as buildings 
+for key kernel enhancements in later lab assignments.]

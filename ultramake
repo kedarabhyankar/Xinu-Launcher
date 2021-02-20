@@ -1,0 +1,22 @@
+#!/bin/bash
+
+export DISPLAY=:0
+REBUILD=$1
+#if[[ "$PWD" =~ "compile" ]]; then
+#	echo "You're in the compile folder! Starting the script now."
+#else
+#	echo -e "You're not in the compile folder.\nBe sure to move this script to the compile folder in your xinu project!"
+#	exit 1
+#fi
+
+make clean
+if [ "$REBUILD"=="-r" ]; then
+	make rebuild
+fi
+make all
+
+cs-console
+
+
+
+
